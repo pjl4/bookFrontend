@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Showbook from '../showbook/Showbook';
+import Showbook from '../showallbooks/ShowAllBooks';
 const axios = require('axios');
 const url = 'http://localhost:8080/api/books';
 
@@ -28,6 +28,7 @@ class Books extends Component {
               <th>Author</th>
               <th>Genre</th>
               <th>Rating(0-5)</th>
+              <th></th>
             </tr>
           </thead>
           {this.state.books.length > 0 &&
