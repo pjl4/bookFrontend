@@ -37,7 +37,7 @@ class CreateBook extends Component {
 			return <Redirect to="/" />;
 		}
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form onSubmit={this.handleSubmit} style={{ color: 'white' }}>
 				<div className="row">
 					<div className="six columns">
 						<label htmlFor="title">Title</label>
@@ -73,7 +73,16 @@ class CreateBook extends Component {
 							></input>
 						</div>
 					</div>
-					<input type="submit" value="Submit"></input>
+					<input
+						className="submit"
+						type="submit"
+						value="Submit"
+						style={{
+							backgroundColor: 'royalblue',
+							color: 'black',
+							fontSize: 20
+						}}
+					></input>
 				</div>
 			</form>
 		);

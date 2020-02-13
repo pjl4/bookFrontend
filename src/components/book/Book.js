@@ -13,7 +13,7 @@ function Book(props) {
 				</a>
 				<button
 					onClick={() => props.handleDelete(props.book._id)}
-					className="button-primary"
+					className="buttonDelete"
 				>
 					delete
 				</button>

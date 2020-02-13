@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 class Nav extends Component {
 	render() {
 		return (
-			<nav>
-				<Link to="/">
-					<h2>Books</h2>
-				</Link>
-				<Link to="/create">
-					<button>create a new book</button>
-				</Link>
-			</nav>
+			<div className="container">
+				<nav>
+					<Link to="/">
+						<h1>Best Reads</h1>
+					</Link>
+					<Link to="/create">
+						<button>create a new book</button>
+					</Link>
+				</nav>
+			</div>
 		);
 	}
 }
