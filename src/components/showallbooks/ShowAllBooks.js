@@ -9,12 +9,27 @@ class ShowAllBooks extends Component {
 		this.state = {
 			books: []
 		};
+		this.handleDelete = this.handleDelete.bind(this);
+		this.getBooksFromApi = this.getBooksFromApi.bind(this);
 	}
 	componentDidMount() {
+		this.getBooksFromApi();
+	}
+	getBooksFromApi() {
 		axios
 			.get(url)
 			.then((res) => {
 				this.setState({ books: res.data });
+			})
+			.catch((error) => console.log(error));
+	}
+
+	handleDelete(id) {
+		const url = `http://localhost:8080/api/books/${id}`;
+		axios
+			.delete(url)
+			.then((res) => {
+				this.getBooksFromApi();
 			})
 			.catch((error) => console.log(error));
 	}
@@ -31,10 +46,16 @@ class ShowAllBooks extends Component {
 							<th></th>
 						</tr>
 					</thead>
-					{this.state.books.length > 0 &&
-						this.state.books.map((book) => (
-							<Showbook book={book} key={book._id}></Showbook>
-						))}
+					<tbody>
+						{this.state.books.length > 0 &&
+							this.state.books.map((book) => (
+								<Showbook
+									handleDelete={this.handleDelete}
+									book={book}
+									key={book._id}
+								></Showbook>
+							))}
+					</tbody>
 				</table>
 			</div>
 		);

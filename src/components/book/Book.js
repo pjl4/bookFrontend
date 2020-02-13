@@ -1,4 +1,5 @@
 import React from 'react';
+
 function Book(props) {
 	return (
 		<tr>
@@ -10,6 +11,12 @@ function Book(props) {
 				<a href={`/${props.book._id}`}>
 					<button>edit</button>
 				</a>
+				<button
+					onClick={() => props.handleDelete(props.book._id)}
+					className="button-primary"
+				>
+					delete
+				</button>
 			</td>
 		</tr>
 	);
