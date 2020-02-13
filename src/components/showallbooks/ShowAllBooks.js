@@ -1,18 +1,44 @@
-import React from 'react';
-function ShowAllBooks(props) {
-  return (
-    <tr>
-      <td>{props.book.title}</td>
-      <td>{props.book.author}</td>
-      <td>{props.book.genre}</td>
-      <td>{props.book.rating}</td>
-      <td>
-        <a href={`/${props.book._id}`}>
-          <button>edit</button>
-        </a>
-      </td>
-    </tr>
-  );
+import React, { Component } from 'react';
+import Showbook from '../book/Book';
+const axios = require('axios');
+const url = 'http://localhost:8080/api/books';
+
+class ShowAllBooks extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			books: []
+		};
+	}
+	componentDidMount() {
+		axios
+			.get(url)
+			.then((res) => {
+				this.setState({ books: res.data });
+			})
+			.catch((error) => console.log(error));
+	}
+	render() {
+		return (
+			<div className="container">
+				<table>
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Author</th>
+							<th>Genre</th>
+							<th>Rating(0-5)</th>
+							<th></th>
+						</tr>
+					</thead>
+					{this.state.books.length > 0 &&
+						this.state.books.map((book) => (
+							<Showbook book={book} key={book._id}></Showbook>
+						))}
+				</table>
+			</div>
+		);
+	}
 }
 
 export default ShowAllBooks;
